@@ -56,21 +56,17 @@ def extract_text_from_file(file: UploadFile):
 def analyze_resume_with_openai(resume_text: str):
     try:
         logger.info("Sending request to OpenAI API for analysis")
-        
-        # Updated method for chat-based completion
-        response = openai.completions.create(
-            model="gpt-3.5-turbo",  # Chat-based model
-            messages=[
-                {"role": "system", "content": "You are an assistant who evaluates resumes."},
-                {"role": "user", "content": f"Evaluate this resume and provide feedback on the skills, industry-standard keywords, and job matching:\n{resume_text}"}
-            ],
-            max_tokens=500
+        response = openai.Completion.create(
+            model="gpt-3.5-turbo",  # Or any available model like "gpt-4" based on your access
+            prompt=f"Evaluate this resume and provide feedback on the skills, industry-standard keywords, and job matching:\n{resume_text}",
+            max_tokens=500,
+            temperature=0.7
         )
-        return response["choices"][0]["message"]["content"]
-        
+        return response.choices[0].text.strip()
     except Exception as e:
         logger.error(f"Error with OpenAI API: {e}")
         raise HTTPException(status_code=500, detail="Error analyzing resume with OpenAI API")
+
 
 # Route to handle resume uploads and feedback using OpenAI API
 @app.post("/upload_resume/")
