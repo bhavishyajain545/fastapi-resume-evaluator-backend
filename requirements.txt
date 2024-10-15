@@ -18,3 +18,4 @@ typing-extensions==4.12.2
 urllib3==2.2.3
 uvicorn==0.31.1
 openai
+python-dotenv
