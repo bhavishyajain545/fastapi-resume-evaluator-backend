@@ -29,11 +29,12 @@ openai.api_key = OPENAI_API_KEY
 # Add CORS middleware to allow requests from React frontend (localhost:3000)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React's default port
+    allow_origins=["https://fastapi-resume-evaluator-frontend-achbixs71.vercel.app"],  # Update this with your actual frontend domain
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Function to extract text from different file types
 def extract_text_from_file(file: UploadFile):
