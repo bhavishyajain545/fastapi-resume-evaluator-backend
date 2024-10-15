@@ -17,7 +17,7 @@ starlette==0.39.2
 typing-extensions==4.12.2
 urllib3==2.2.3
 uvicorn==0.31.1
-openai # Specific version to ensure compatibility
+openai==1.51.0  # Upgraded OpenAI version
 python-dotenv==1.0.0  # Handles environment variables
 PyPDF2==3.0.1  # For handling PDF files
 textract==1.6.5  # For handling DOC and DOCX files
